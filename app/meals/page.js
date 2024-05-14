@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/mealsGrid";
+import ImagePicker from "./imagePicker";
 import { getMeals } from "@/lib/meals";
 
 async function Meals() {
