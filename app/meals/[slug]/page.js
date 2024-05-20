@@ -4,6 +4,22 @@ import { notFound } from "next/navigation";
 import { getMeal } from "@/lib/meals";
 import classes from "./page.module.css";
 
+// if you use this function to dynamically generate metadata for each meal, you also need to add the if check.  
+// This is because if user goes to a url of a meal that doesn't exist, there will be no title or description returned, meaning you will get the general error page ("something went wrong")
+
+export async function generateMetadata({ params }) {
+  const meal = getMeal(params.slug);
+
+   if (!meal) {
+     notFound();
+   }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function MealDetailsPage({ params }) {
   const meal = getMeal(params.slug);
 
